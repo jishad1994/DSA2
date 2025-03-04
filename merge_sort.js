@@ -30,3 +30,6 @@ function mergeSort(array) {
 
 //example 
 console.log(mergeSort([4,7,2,9,4,0,1,6,4])) // output :[ 0, 1, 2, 4, 4, 4, 6, 7, 9]
+
+
+//
