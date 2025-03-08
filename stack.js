@@ -59,60 +59,43 @@ myStack.reverse();
 myStack.display();
 
 //stack using object
-
-class ObjectStack {
+class OStack {
     constructor() {
-        this.items = {};
-        this.top = 0;
+        this.items = {}; // Store elements as key-value pairs
+        this.top = 0; // Track the index of the top element
     }
 
-    push(item) {
-        this.items[this.top] = item;
+    // Push operation
+    add(value) {
+        this.items[this.top] = value;
         this.top++;
+        return true;
     }
 
-    pop() {
-        if (this.top == 0) return null;
-        this.top--;
-        let temp = this.items[this.top];
-        delete this.items[this.top];
-        return temp;
-    }
-
+    // Peek operation (view the top element)
     peek() {
-        if (this.top == 0) return null;
-        return this.items[this.top - 1];
+        if (this.top === 0) return null;
+        return this.items[this.top - 1]; // Return the last added element
     }
 
-    display() {
-        if (this.top == 0) {
-            console.log("the stack is empty");
-        } else {
-            for (let item in this.items) {
-                console.log(`${this.items[item]}`);
-            }
-        }
-    }
-
-    isEmpty() {
-        if (this.top == 0) return true;
-        return false;
-    }
-
-    size() {
-        return this.top;
+    // Pop operation (remove the top element)
+    delete() {
+        if (this.top === 0) return false;
+        this.top--; // Move top pointer down
+        const deletedValue = this.items[this.top]; // Get the topmost element
+        delete this.items[this.top]; // Remove it from the stack
+        return deletedValue;
     }
 }
 
-const myObjectStack = new ObjectStack();
-// myObjectStack.push("jishad");
-// myObjectStack.push("fuhad");
-// myObjectStack.push("irfan");
-// myObjectStack.push("jameela");
-myObjectStack.peek();
-myObjectStack.pop();
-myObjectStack.display();
-console.log(myObjectStack.isEmpty());
+// Example Usage
+const stack = new OStack();
+stack.add(10);
+stack.add(20);
+stack.add(30);
+console.log(stack.peek()); // Output: 30
+console.log(stack.delete()); // Output: 30
+console.log(stack.peek()); // Output: 20
 
 //reverse a string using stack
 
@@ -164,5 +147,34 @@ class UniqueStack {
         if (this.items.length !== 0) {
             console.log(this.stack);
         }
+    }
+}
+
+////stack using two queues
+
+class StackUsingQueues {
+    constructor() {
+        this.q1 = [];
+        this.q2 = [];
+    }
+
+    push(x) {
+        this.q1.push(x);
+    }
+
+    pop() {
+        if (this.q1.length === 0) return null;
+
+        while (this.q1.length > 1) {
+            this.q2.push(this.q1.shift());
+        }
+        let popped = this.q1.shift();
+        [this.q1, this, q2] = [this.q2, this.q1];
+        return popped;
+    }
+
+    idEmpty(){
+
+        return this.q1.length===0;
     }
 }

@@ -360,3 +360,24 @@ myTable.set("age", 30);
 myTable.set("place", "tirur");
 myTable.delete("place");
 console.log(myTable.get("age"));
+
+
+
+set(key,value){
+
+let index=this.hash;
+let step=this.hash2;
+let i=0;
+
+while(this.table[index!=null] && this.table[index][0]!==key){
+i++
+index=(this.hash(key)+i*step)%this.size;
+
+}
+
+this.table[index][0]=key;
+this.table[index][1]=value;
+
+
+
+}

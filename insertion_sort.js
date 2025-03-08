@@ -14,4 +14,4 @@ function insertionSort(array) {
     return array;
 }
 //example
-console.log(insertionSort([5, 3]));
+console.log(insertionSort([5, 33,3]));
